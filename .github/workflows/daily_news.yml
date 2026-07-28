@@ -1,0 +1,56 @@
+name: Daily News Auto-Generator
+
+on:
+  schedule:
+    - cron: '30 2 * * *'   # 8:00 AM IST daily
+    - cron: '30 8 * * *'   # 2:00 PM IST daily (2 updates per day)
+  push:
+    branches:
+      - master
+  workflow_dispatch:        # Manual trigger from GitHub
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Decrypt Firebase Service Account
+        working-directory: ./scripts
+        run: |
+          node -e "
+            const fs = require('fs');
+            const crypto = require('crypto');
+            const data = fs.readFileSync('sa.enc', 'utf8').split(':');
+            const iv = Buffer.from(data[0], 'hex');
+            const encryptedText = Buffer.from(data[1], 'hex');
+            const key = crypto.createHash('sha256').update('UsWealthBriefSuperSecretKey2026').digest('base64').substring(0, 32);
+            const decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), iv);
+            let decrypted = decipher.update(encryptedText);
+            decrypted = Buffer.concat([decrypted, decipher.final()]);
+            fs.writeFileSync('firebase_sa.json', decrypted);
+            console.log('Service account decrypted successfully.');
+          "
+
+      - name: Generate News from RSS Feeds
+        working-directory: ./scripts
+        run: node node_news_local_ai.js
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools@latest
+
+      - name: Deploy to Firebase Hosting
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/scripts/firebase_sa.json
+        run: |
+          firebase deploy --only hosting --project us-wealth-brief
+          rm -f scripts/firebase_sa.json
+          echo "✅ Deployment complete!"

@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+scripts/node_modules/
+
+# Firebase cache
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+
+# Flutter/Dart build artifacts
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+scripts/firebase_sa.json

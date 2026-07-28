@@ -1,0 +1,10 @@
+{
+  "name": "us-wealth-brief-automation",
+  "version": "2.1.0",
+  "description": "Daily financial news fetcher for US Wealth Brief (zero external dependencies)",
+  "main": "node_news_local_ai.js",
+  "scripts": {
+    "start": "node node_news_local_ai.js"
+  },
+  "dependencies": {}
+}

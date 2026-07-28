@@ -1,0 +1,15 @@
+name: Debug Fetch Logs
+on:
+  push:
+    branches: [ master ]
+jobs:
+  fetch-logs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Fetch logs of failed run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh run view 90048260623 --log-failed

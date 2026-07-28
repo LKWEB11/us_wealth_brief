@@ -1,0 +1,367 @@
+/* WSJ-Style Newspaper Theme */
+:root {
+    --bg-color: #ffffff;
+    --text-main: #333333;
+    --text-dark: #111111;
+    --text-muted: #666666;
+    --border-color: #dfdfdf;
+    --border-dark: #333333;
+    --link-color: #000000;
+    --wsj-blue: #0066cc;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Source Sans 3', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--wsj-blue);
+}
+
+/* Utility Bar (Top) */
+.utility-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 5%;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600;
+}
+
+.utility-right a {
+    margin-left: 15px;
+    font-weight: 700;
+}
+
+.btn-subscribe {
+    background-color: var(--wsj-blue);
+    color: white !important;
+    padding: 4px 12px;
+    border-radius: 2px;
+}
+
+.btn-subscribe:hover {
+    background-color: #004c99;
+}
+
+.btn-signin {
+    border: 1px solid var(--border-color);
+    padding: 4px 12px;
+    color: var(--text-dark);
+}
+
+/* Masthead */
+.masthead {
+    text-align: center;
+    padding: 25px 0 15px;
+}
+
+.logo-container h1 {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #000;
+    text-transform: uppercase;
+}
+
+/* Main Navigation */
+.main-nav {
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 4px solid var(--border-dark);
+    padding: 10px 5%;
+    margin-bottom: 30px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.main-nav a {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-transform: capitalize;
+}
+
+/* Layout Core */
+.newspaper-layout {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2%;
+    gap: 30px;
+}
+
+/* Left Column */
+.col-left {
+    flex: 1;
+    min-width: 220px;
+    border-right: 1px solid var(--border-color);
+    padding-right: 20px;
+}
+
+/* Center Column (Featured) */
+.col-center {
+    flex: 2;
+    min-width: 400px;
+    border-right: 1px solid var(--border-color);
+    padding-right: 20px;
+}
+
+/* Right Column */
+.col-right {
+    flex: 1;
+    min-width: 220px;
+}
+
+/* Article Styles */
+.article {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.article:last-child {
+    border-bottom: none;
+}
+
+.article-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+
+.article-title a {
+    color: inherit;
+}
+
+.article-title a:hover {
+    color: var(--wsj-blue);
+    text-decoration: underline;
+}
+
+.article-summary {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--text-main);
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.article-category {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--wsj-blue);
+    margin-bottom: 6px;
+}
+
+.article-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.article-dot {
+    color: var(--border-color);
+}
+
+.article-source {
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.article-content {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+/* Featured Article overrides */
+.featured-article .article-title {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+    line-height: 1.15;
+}
+
+.featured-article .article-summary {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.featured-article .article-content {
+    font-size: 1rem;
+    color: var(--text-main);
+    line-height: 1.7;
+    margin-top: 12px;
+}
+
+
+
+/* Bottom Grid for extra articles */
+.bottom-grid {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 40px 2% 0;
+    border-top: 2px solid var(--border-dark);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Loading */
+.loading-state {
+    text-align: center;
+    padding: 50px;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    border-top: 4px solid var(--border-dark);
+    text-align: center;
+    padding: 40px 5%;
+    margin-top: 60px;
+    font-family: var(--font-sans);
+}
+
+.footer-logo {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.footer-links {
+    margin: 12px 0;
+    font-size: 0.9rem;
+}
+
+.footer-links a {
+    color: var(--wsj-blue);
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-links span {
+    color: var(--border-color);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .newspaper-layout {
+        flex-direction: column;
+    }
+    
+    .col-left, .col-center {
+        border-right: none;
+        border-bottom: 1px solid var(--border-dark);
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+    
+    .featured-article .article-title {
+        font-size: 2.2rem;
+    }
+    
+    .logo-container h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* ── Google AdSense ── */
+.ad-container {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    min-height: 0;
+    overflow: hidden;
+    /* Hidden by default — shown only when Google fills the slot */
+    display: none;
+}
+
+.ad-container.ad-loaded {
+    display: block;
+    padding: 8px 0;
+    margin: 0 0 20px;
+    background: #f9f9f9;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    min-height: 90px;
+}
+
+.ad-mid.ad-loaded {
+    max-width: 1300px;
+    margin: 30px auto;
+}
+
+.ad-bottom.ad-loaded {
+    max-width: 1300px;
+    margin: 0 auto 30px;
+}
+
+.ad-sidebar {
+    display: none;
+}
+
+.ad-sidebar.ad-loaded {
+    display: block;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+    min-height: 250px;
+}
+
