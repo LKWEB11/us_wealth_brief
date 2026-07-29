@@ -112,9 +112,37 @@
     <!-- Masthead / Logo -->
     <header class="masthead">
         <div class="logo-container">
-            <h1>US WEALTH BRIEF</h1>
+            <h1>US WEALTH BRIEF <span id="heart-icon">❤️</span></h1>
+            <p class="tagline">🇺🇸 &nbsp; America's Daily Financial Intelligence &nbsp; 🇺🇸</p>
         </div>
     </header>
+
+    <style>
+        #heart-icon {
+            display: inline-block;
+            animation: heartbeat 1.2s ease-in-out infinite;
+            transform-origin: center;
+            filter: drop-shadow(0 0 8px rgba(220, 20, 60, 0.7));
+        }
+        @keyframes heartbeat {
+            0%   { transform: scale(1);    filter: drop-shadow(0 0 4px rgba(220,20,60,0.5)); }
+            14%  { transform: scale(1.25); filter: drop-shadow(0 0 14px rgba(220,20,60,0.9)); }
+            28%  { transform: scale(1);    filter: drop-shadow(0 0 4px rgba(220,20,60,0.5)); }
+            42%  { transform: scale(1.18); filter: drop-shadow(0 0 12px rgba(220,20,60,0.8)); }
+            70%  { transform: scale(1);    filter: drop-shadow(0 0 4px rgba(220,20,60,0.5)); }
+            100% { transform: scale(1);    filter: drop-shadow(0 0 4px rgba(220,20,60,0.5)); }
+        }
+        .tagline {
+            font-family: 'Georgia', serif;
+            font-size: 0.85rem;
+            color: #B22234;
+            letter-spacing: 0.12em;
+            margin-top: 2px;
+            font-style: italic;
+            text-align: center;
+        }
+    </style>
+
 
     <!-- Main Navigation Bar -->
     <nav class="main-nav">
