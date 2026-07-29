@@ -114,6 +114,8 @@ function parseRSS(xmlText, sourceUrl) {
   return articles;
 }
 
+
+
 async function fetchAllNews() {
   let allArticles = [];
   let seen = new Set();
@@ -124,7 +126,6 @@ async function fetchAllNews() {
       const xml = await fetchUrl(url, 12000);
       const items = parseRSS(xml, url);
       console.log(`  → Got ${items.length} items from ${url}`);
-
       for (const item of items) {
         if (!item.title || seen.has(item.title)) continue;
         seen.add(item.title);
@@ -135,45 +136,152 @@ async function fetchAllNews() {
     }
   }
 
-  console.log(`Total unique articles collected: ${allArticles.length}`);
+  console.log(`Total unique articles: ${allArticles.length}`);
   allArticles.sort(() => 0.5 - Math.random());
   return allArticles.slice(0, 40);
 }
 
+// Generate RSS 2.0 feed for Google News discovery
+function generateRSS(articles, updatedAt) {
+  const items = articles.slice(0, 20).map(a => {
+    const pub = new Date(a.pubDate).toUTCString();
+    return `  <item>
+    <title><![CDATA[${a.title}]]></title>
+    <link>${a.link}</link>
+    <description><![CDATA[${a.summary}]]></description>
+    <pubDate>${pub}</pubDate>
+    <category>${a.category}</category>
+    <source url="https://us-wealth-brief.web.app">US Wealth Brief</source>
+  </item>`;
+  }).join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>US Wealth Brief – Daily Financial News</title>
+    <link>https://us-wealth-brief.web.app</link>
+    <description>Top US financial news: markets, economy, tech, crypto and more – updated every morning.</description>
+    <language>en-us</language>
+    <lastBuildDate>${new Date(updatedAt).toUTCString()}</lastBuildDate>
+    <managingEditor>ukdwuxbjm@mozmail.com (US Wealth Brief)</managingEditor>
+    <webMaster>ukdwuxbjm@mozmail.com</webMaster>
+    <ttl>60</ttl>
+    <atom:link href="https://us-wealth-brief.web.app/feed.xml" rel="self" type="application/rss+xml"/>
+${items}
+  </channel>
+</rss>`;
+}
+
+// Generate Google News Sitemap
+function generateNewsSitemap(articles, updatedAt) {
+  const today = new Date(updatedAt).toISOString().split('T')[0];
+  const items = articles.slice(0, 1000).map(a => {
+    const pub = new Date(a.pubDate).toISOString();
+    return `  <url>
+    <loc>https://us-wealth-brief.web.app/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>US Wealth Brief</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>${pub}</news:publication_date>
+      <news:title><![CDATA[${a.title}]]></news:title>
+      <news:keywords>${a.category}, US finance, economy</news:keywords>
+    </news:news>
+  </url>`;
+  }).join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+${items}
+</urlset>`;
+}
+
+// Generate per-article JSON-LD structured data block
+function generateJsonLD(articles, updatedAt) {
+  const newsItems = articles.slice(0, 10).map(a => ({
+    "@type": "NewsArticle",
+    "headline": a.title,
+    "description": a.summary,
+    "datePublished": new Date(a.pubDate).toISOString(),
+    "dateModified": updatedAt,
+    "author": { "@type": "Organization", "name": a.source },
+    "publisher": {
+      "@type": "Organization",
+      "name": "US Wealth Brief",
+      "url": "https://us-wealth-brief.web.app",
+      "logo": { "@type": "ImageObject", "url": "https://us-wealth-brief.web.app/favicon.ico" }
+    },
+    "url": a.link,
+    "articleSection": a.category,
+    "keywords": `US finance, ${a.category}, economy, markets`,
+    "inLanguage": "en-US",
+    "isPartOf": { "@type": "WebSite", "name": "US Wealth Brief", "url": "https://us-wealth-brief.web.app" }
+  }));
+
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://us-wealth-brief.web.app/#website",
+        "url": "https://us-wealth-brief.web.app",
+        "name": "US Wealth Brief",
+        "description": "Daily US financial news for American readers",
+        "inLanguage": "en-US",
+        "publisher": { "@type": "Organization", "name": "US Wealth Brief" },
+        "potentialAction": { "@type": "SearchAction", "target": "https://us-wealth-brief.web.app/?s={search_term_string}", "query-input": "required name=search_term_string" }
+      },
+      ...newsItems
+    ]
+  }, null, 2);
+}
+
 async function main() {
-  console.log('=== US Wealth Brief - News Generator v2.1 ===');
+  console.log('=== US Wealth Brief – News Generator v3.0 ===');
   console.log('Fetching latest financial news from RSS feeds...');
 
   const articles = await fetchAllNews();
 
   const publicDir = path.join(__dirname, '../public');
-  if (!fs.existsSync(publicDir)) {
-    fs.mkdirSync(publicDir, { recursive: true });
-  }
+  if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
 
   const outPath = path.join(publicDir, 'news.json');
 
   if (articles.length === 0) {
-    console.warn('⚠️  No new articles fetched. Keeping existing news.json if it exists.');
+    console.warn('⚠️  No new articles fetched. Keeping existing news.json if present.');
     if (fs.existsSync(outPath)) {
       console.log('✅ Existing news.json retained. Exiting with success.');
-      process.exit(0); // Don't fail the deploy — keep old content
+      process.exit(0);
     } else {
       console.error('❌ No articles and no existing news.json. Failing.');
       process.exit(1);
     }
   }
 
-  const outputData = {
-    updatedAt: new Date().toISOString(),
-    totalArticles: articles.length,
-    articles
-  };
+  const updatedAt = new Date().toISOString();
 
+  const outputData = { updatedAt, totalArticles: articles.length, articles };
   fs.writeFileSync(outPath, JSON.stringify(outputData, null, 2));
+  console.log(`✅ Saved ${articles.length} articles → public/news.json`);
 
-  console.log(`\n✅ SUCCESS! Saved ${articles.length} articles to public/news.json`);
-  console.log(`Updated at: ${outputData.updatedAt}`);
+  // Generate RSS feed (Google News discovery)
+  const rss = generateRSS(articles, updatedAt);
+  fs.writeFileSync(path.join(publicDir, 'feed.xml'), rss);
+  console.log('✅ RSS feed → public/feed.xml');
+
+  // Generate Google News Sitemap
+  const newsSitemap = generateNewsSitemap(articles, updatedAt);
+  fs.writeFileSync(path.join(publicDir, 'sitemap-news.xml'), newsSitemap);
+  console.log('✅ News sitemap → public/sitemap-news.xml');
+
+  // Generate JSON-LD structured data file for injection
+  const jsonld = generateJsonLD(articles, updatedAt);
+  fs.writeFileSync(path.join(publicDir, 'structured-data.json'), jsonld);
+  console.log('✅ JSON-LD → public/structured-data.json');
+
+  console.log(`\n🚀 All files generated. Updated at: ${updatedAt}`);
   process.exit(0);
 }
 
@@ -181,3 +289,4 @@ main().catch(e => {
   console.error('Fatal Error:', e.message);
   process.exit(1);
 });
+

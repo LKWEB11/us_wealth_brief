@@ -1,9 +1,19 @@
 User-agent: *
 Allow: /
 Allow: /news.json
+Allow: /sitemap.xml
+Allow: /sitemap-news.xml
+Allow: /feed.xml
 
-# Sitemap location for Google
+# Google News Bot - full access
+User-agent: Googlebot-News
+Allow: /
+
+# Speed crawl for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Sitemaps
 Sitemap: https://us-wealth-brief.web.app/sitemap.xml
-
-# Crawl delay (be nice to crawlers)
-Crawl-delay: 1
+Sitemap: https://us-wealth-brief.web.app/sitemap-news.xml

@@ -1,9 +1,23 @@
+// ═══ LOAD FRESH JSON-LD STRUCTURED DATA (Google Bot Signal) ═══
+async function injectStructuredData() {
+    try {
+        const res = await fetch('structured-data.json?v=' + Date.now());
+        if (!res.ok) return;
+        const jsonld = await res.text();
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = jsonld;
+        document.head.appendChild(script);
+    } catch(e) { /* silent fail */ }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Set today's date dynamically in WSJ format
     const dateElement = document.getElementById('current-date');
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     dateElement.textContent = new Date().toLocaleDateString('en-US', options);
 
+    injectStructuredData(); // Feed Google Bot fresh NewsArticle schema
     fetchNews();
 });
 

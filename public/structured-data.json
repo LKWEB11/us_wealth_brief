@@ -1,0 +1,312 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://us-wealth-brief.web.app/#website",
+      "url": "https://us-wealth-brief.web.app",
+      "name": "US Wealth Brief",
+      "description": "Daily US financial news for American readers",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@type": "Organization",
+        "name": "US Wealth Brief"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://us-wealth-brief.web.app/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Stocks making the biggest moves premarket: Coca-Cola, Sherwin-Williams, Johnson & Johnson & more",
+      "description": "These are the stocks posting the largest moves in early trading.",
+      "datePublished": "2026-07-28T11:42:06.000Z",
+      "dateModified": "2026-07-29T02:54:35.017Z",
+      "author": {
+        "@type": "Organization",
+        "name": "Finance"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://us-wealth-brief.web.app/favicon.ico"
+        }
+      },
+      "url": "https://www.cnbc.com/2026/07/28/stocks-making-the-biggest-moves-premarket-ko-shw-jnj.html",
+      "articleSection": "Markets",
+      "keywords": "US finance, Markets, economy, markets",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app"
+      }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Best Citi credit cards for 2026",
+      "description": "Best Citi credit cards for 2026",
+      "datePublished": "2026-01-28T19:51:10.000Z",
+      "dateModified": "2026-07-29T02:54:35.017Z",
+      "author": {
+        "@type": "Organization",
+        "name": "Yahoo Finance"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://us-wealth-brief.web.app/favicon.ico"
+        }
+      },
+      "url": "https://finance.yahoo.com/personal-finance/credit-cards/article/best-citi-credit-cards-195110694.html",
+      "articleSection": "Finance",
+      "keywords": "US finance, Finance, economy, markets",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app"
+      }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Steve Eisman is starting to have doubts about AI. The &apos;Big Short&apos; investor just sold a key tech stock",
+      "description": "Steve Eisman is warning that investors may be underestimating the risks if the AI boom fails to deliver on lofty expectations.",
+      "datePublished": "2026-07-27T13:59:57.000Z",
+      "dateModified": "2026-07-29T02:54:35.017Z",
+      "author": {
+        "@type": "Organization",
+        "name": "Finance"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://us-wealth-brief.web.app/favicon.ico"
+        }
+      },
+      "url": "https://www.cnbc.com/2026/07/27/eisman-has-doubts-about-ai-big-short-investor-just-sold-key-tech-stock.html",
+      "articleSection": "Tech",
+      "keywords": "US finance, Tech, economy, markets",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app"
+      }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Allegro Microsystems (ALGM) Advanced from Sharp Demand Growth",
+      "description": "Allegro Microsystems (ALGM) Advanced from Sharp Demand Growth",
+      "datePublished": "2026-07-27T14:57:14.000Z",
+      "dateModified": "2026-07-29T02:54:35.017Z",
+      "author": {
+        "@type": "Organization",
+        "name": "Yahoo Finance"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://us-wealth-brief.web.app/favicon.ico"
+        }
+      },
+      "url": "https://finance.yahoo.com/markets/stocks/articles/allegro-microsystems-algm-advanced-sharp-145714557.html",
+      "articleSection": "Finance",
+      "keywords": "US finance, Finance, economy, markets",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app"
+      }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Just 3 \"Magnificent Seven\" Stocks Remain Founder-Led. Should Investors Bet on Elon Musk, Mark Zuckerberg, or Jensen Huang for the Long Term?",
+      "description": "Just 3 \"Magnificent Seven\" Stocks Remain Founder-Led. Should Investors Bet on Elon Musk, Mark Zuckerberg, or Jensen Huang for the Long Term?",
+      "datePublished": "2026-07-27T15:10:00.000Z",
+      "dateModified": "2026-07-29T02:54:35.017Z",
+      "author": {
+        "@type": "Organization",
+        "name": "Yahoo Finance"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://us-wealth-brief.web.app/favicon.ico"
+        }
+      },
+      "url": "https://finance.yahoo.com/markets/stocks/articles/just-3-magnificent-seven-stocks-151000269.html",
+      "articleSection": "Tech",
+      "keywords": "US finance, Tech, economy, markets",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app"
+      }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "JPMorgan report finds dramatic jump in AI-themed ETFs — despite rough quarter",
+      "description": "Wall Street is banking heavily on exchange-traded funds that give investors artificial intelligence exposure, according to JPMorgan Asset Management.",
+      "datePublished": "2026-07-23T17:10:06.000Z",
+      "dateModified": "2026-07-29T02:54:35.017Z",
+      "author": {
+        "@type": "Organization",
+        "name": "Finance"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://us-wealth-brief.web.app/favicon.ico"
+        }
+      },
+      "url": "https://www.cnbc.com/2026/07/23/jpmorgan-dramatic-jump-in-ai-etfs-despite-rough-quarter.html",
+      "articleSection": "Tech",
+      "keywords": "US finance, Tech, economy, markets",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app"
+      }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Stocks making the biggest moves after hours: Ford, Teradyne, Visa, KLA Corp and more",
+      "description": "These are the stocks posting the largest moves in after-hours trading.",
+      "datePublished": "2026-07-28T21:23:28.000Z",
+      "dateModified": "2026-07-29T02:54:35.017Z",
+      "author": {
+        "@type": "Organization",
+        "name": "Finance"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://us-wealth-brief.web.app/favicon.ico"
+        }
+      },
+      "url": "https://www.cnbc.com/2026/07/28/stocks-making-the-biggest-moves-after-hours-f-ter-v-klac-and-more.html",
+      "articleSection": "Markets",
+      "keywords": "US finance, Markets, economy, markets",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app"
+      }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Rates are inching lower. When will mortgage rates finally go back down to 6%?",
+      "description": "Rates are inching lower. When will mortgage rates finally go back down to 6%?",
+      "datePublished": "2025-06-24T19:50:22.000Z",
+      "dateModified": "2026-07-29T02:54:35.017Z",
+      "author": {
+        "@type": "Organization",
+        "name": "Yahoo Finance"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://us-wealth-brief.web.app/favicon.ico"
+        }
+      },
+      "url": "https://finance.yahoo.com/personal-finance/mortgages/article/when-will-mortgage-rates-go-down-to-6-195022219.html",
+      "articleSection": "Economy",
+      "keywords": "US finance, Economy, economy, markets",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app"
+      }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Form 4 Scribe Therapeutics For: 28 July",
+      "description": "Form 4 Scribe Therapeutics For: 28 July",
+      "datePublished": "2026-07-28T21:00:18.000Z",
+      "dateModified": "2026-07-29T02:54:35.017Z",
+      "author": {
+        "@type": "Organization",
+        "name": "All News"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://us-wealth-brief.web.app/favicon.ico"
+        }
+      },
+      "url": "https://www.investing.com/news/filings/form-4-scribe-therapeutics-for-28-july-93CH-4818533",
+      "articleSection": "Finance",
+      "keywords": "US finance, Finance, economy, markets",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app"
+      }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Form 4 Accelerant Holdings For: 28 July",
+      "description": "Form 4 Accelerant Holdings For: 28 July",
+      "datePublished": "2026-07-28T21:00:17.000Z",
+      "dateModified": "2026-07-29T02:54:35.017Z",
+      "author": {
+        "@type": "Organization",
+        "name": "All News"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://us-wealth-brief.web.app/favicon.ico"
+        }
+      },
+      "url": "https://www.investing.com/news/filings/form-4-accelerant-holdings-for-28-july-93CH-4818532",
+      "articleSection": "Finance",
+      "keywords": "US finance, Finance, economy, markets",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "US Wealth Brief",
+        "url": "https://us-wealth-brief.web.app"
+      }
+    }
+  ]
+}
