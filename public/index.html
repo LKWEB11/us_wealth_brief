@@ -87,9 +87,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
-    <!-- ═══ GOOGLE ADSENSE ═══ -->
+    <!-- ═══ GOOGLE ADSENSE AUTO ADS ═══ -->
+    <!-- Auto Ads: Google places ads automatically in best positions -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6300743484424794"
          crossorigin="anonymous"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6300743484424794",
+            enable_page_level_ads: true
+        });
+    </script>
 </head>
 <body>
 
@@ -98,16 +105,7 @@
         <div class="utility-left" id="current-date">Tuesday, July 28, 2026</div>
     </div>
 
-    <!-- Ad: Below utility bar (top of page) -->
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-6300743484424794"
-             data-ad-slot="4337115656"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+    <!-- Auto Ads: Google will place ads automatically -->
 
     <!-- Masthead / Logo -->
     <header class="masthead">
@@ -180,46 +178,19 @@
         <aside class="col-right" id="right-column">
             <!-- Injected by JS -->
 
-            <!-- Ad inside right sidebar -->
-            <div class="ad-container ad-sidebar">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-6300743484424794"
-                     data-ad-slot="4337115656"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
+            <!-- Auto Ads handles sidebar placement -->
         </aside>
 
     </main>
 
-    <!-- Ad: Between main content and bottom grid -->
-    <div class="ad-container ad-mid">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-6300743484424794"
-             data-ad-slot="4337115656"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+    <!-- Auto Ads handles mid-page placement -->
 
     <!-- Bottom Grid for remaining articles -->
     <section class="bottom-grid" id="bottom-grid">
         <!-- Injected by JS -->
     </section>
 
-    <!-- Ad: Bottom of page -->
-    <div class="ad-container ad-bottom">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-6300743484424794"
-             data-ad-slot="4337115656"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+    <!-- Auto Ads handles bottom placement -->
 
     <footer>
         <div class="footer-logo">US WEALTH BRIEF</div>
@@ -235,39 +206,6 @@
 
     <script src="script.js"></script>
 
-    <!-- Auto-show ad container ONLY when Google fills the slot -->
-    <script>
-        (window.adsbygoogle = window.adsbygoogle || []).push = (function(push) {
-            return function() {
-                push.apply(this, arguments);
-                // After each ad push, check all ins elements
-                setTimeout(() => {
-                    document.querySelectorAll('.adsbygoogle').forEach(ins => {
-                        const container = ins.closest('.ad-container');
-                        if (!container) return;
-                        // Google sets data-ad-status="filled" when ad loads
-                        if (ins.getAttribute('data-ad-status') === 'filled' ||
-                            ins.offsetHeight > 0) {
-                            container.classList.add('ad-loaded');
-                        }
-                    });
-                }, 1500);
-            };
-        })(window.adsbygoogle.push || Array.prototype.push);
-
-        // Also check after page fully loads
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.querySelectorAll('.adsbygoogle').forEach(ins => {
-                    const container = ins.closest('.ad-container');
-                    if (!container) return;
-                    if (ins.getAttribute('data-ad-status') === 'filled' ||
-                        ins.offsetHeight > 0) {
-                        container.classList.add('ad-loaded');
-                    }
-                });
-            }, 3000);
-        });
-    </script>
+    <!-- Auto Ads: No manual script needed - Google handles everything -->
 </body>
 </html>
