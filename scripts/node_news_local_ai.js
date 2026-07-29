@@ -282,11 +282,85 @@ async function main() {
   console.log('✅ JSON-LD → public/structured-data.json');
 
   console.log(`\n🚀 All files generated. Updated at: ${updatedAt}`);
+
+  // ═══ REAL-TIME SEARCH ENGINE NOTIFICATION ═══
+  await notifySearchEngines(updatedAt);
+
   process.exit(0);
+}
+
+// ═══ LIVE PING — Tell search engines instantly when new content is published ═══
+async function notifySearchEngines(updatedAt) {
+  const SITE = 'https://us-wealth-brief.web.app';
+  const INDEXNOW_KEY = 'uswealthbrief2026indexnow';
+
+  // All URLs to notify
+  const urlList = [
+    `${SITE}/`,
+    `${SITE}/sitemap.xml`,
+    `${SITE}/sitemap-news.xml`,
+    `${SITE}/feed.xml`
+  ];
+
+  console.log('\n📡 Pinging search engines in real-time...');
+
+  // 1. IndexNow — instant notification to Bing, Yandex, DuckDuckGo, Seznam
+  const indexNowBody = JSON.stringify({
+    host: 'us-wealth-brief.web.app',
+    key: INDEXNOW_KEY,
+    keyLocation: `${SITE}/${INDEXNOW_KEY}.txt`,
+    urlList
+  });
+
+  const engines = [
+    { host: 'api.indexnow.org', name: 'IndexNow (Bing/DDG/Yandex)' },
+    { host: 'www.bing.com', name: 'Bing Direct' }
+  ];
+
+  for (const engine of engines) {
+    try {
+      await new Promise((resolve) => {
+        const req = https.request({
+          hostname: engine.host,
+          path: '/indexnow',
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Content-Length': Buffer.byteLength(indexNowBody)
+          }
+        }, res => {
+          console.log(`  ✅ ${engine.name} → HTTP ${res.statusCode}`);
+          resolve();
+        });
+        req.on('error', e => { console.log(`  ⚠️  ${engine.name} → ${e.message}`); resolve(); });
+        req.setTimeout(8000, () => { req.destroy(); resolve(); });
+        req.write(indexNowBody);
+        req.end();
+      });
+    } catch(e) { /* silent */ }
+  }
+
+  // 2. Google — sitemap ping (submit both sitemaps)
+  const googlePings = [
+    `/ping?sitemap=${encodeURIComponent(SITE + '/sitemap.xml')}`,
+    `/ping?sitemap=${encodeURIComponent(SITE + '/sitemap-news.xml')}`
+  ];
+
+  for (const pingPath of googlePings) {
+    try {
+      await new Promise((resolve) => {
+        https.get({ hostname: 'www.google.com', path: pingPath }, res => {
+          console.log(`  ✅ Google sitemap ping → HTTP ${res.statusCode}`);
+          resolve();
+        }).on('error', () => resolve()).setTimeout(8000, function(){ this.destroy(); resolve(); });
+      });
+    } catch(e) { /* silent */ }
+  }
+
+  console.log('📡 All search engines notified!\n');
 }
 
 main().catch(e => {
   console.error('Fatal Error:', e.message);
   process.exit(1);
 });
-
