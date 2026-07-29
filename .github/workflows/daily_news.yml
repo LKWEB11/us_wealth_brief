@@ -2,8 +2,7 @@ name: Daily News Auto-Generator
 
 on:
   schedule:
-    - cron: '30 2 * * *'   # 8:00 AM IST daily
-    - cron: '30 8 * * *'   # 2:00 PM IST daily (2 updates per day)
+    - cron: '30 11 * * *'   # 6:00 AM EST (New York) daily
   push:
     branches:
       - master
